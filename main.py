@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from database import Base, engine
-from routers import auth
+from routers import auth, books
 
 #Para crear las tablas de la bd 
 Base.metadata.create_all(bind=engine)
@@ -10,6 +10,7 @@ app = FastAPI()
 
 #Incluimos los routers
 app.include_router(auth.router)
+app.include_router(books.router)
 
 @app.get("/")
 def read_root():

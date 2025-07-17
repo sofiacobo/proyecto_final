@@ -19,4 +19,4 @@ class BookOut(BaseModel):
     id_lending : int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

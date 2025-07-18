@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from database import Base, engine
 from routers import auth, books
 
+# #Para borrar las tablas de la bd en caso de error en el modelo de datos
+# Base.metadata.drop_all(bind=engine)
 #Para crear las tablas de la bd 
 Base.metadata.create_all(bind=engine)
 

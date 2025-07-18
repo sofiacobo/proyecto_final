@@ -7,7 +7,6 @@ class BookCreate(BaseModel):
     author : str
     date_release : date
     is_available : bool
-    id_lending : int
 
 class BookOut(BaseModel):
     id : int
@@ -16,7 +15,6 @@ class BookOut(BaseModel):
     author : str
     date_release : date
     is_available : bool
-    id_lending : int
 
     class Config:
         from_attributes = True

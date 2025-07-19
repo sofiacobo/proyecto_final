@@ -15,4 +15,4 @@ class LendingOut(BaseModel):
     id_book : int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

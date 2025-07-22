@@ -8,20 +8,20 @@ from sqlalchemy.orm import Session
 
 from models.user import User
 
-SECRET_KEY = "3TkpHoef4X-uNndG0L_E2h-aW7jczPBiapEWfSnk9-g" #en el env, en cmd se ejecuta python -c "import secrets; print(secrets.token_urlsafe(32))"
+SECRET_KEY = "3TkpHoef4X-uNndG0L_E2h-aW7jczPBiapEWfSnk9-g" #python -c "import secrets; print(secrets.token_urlsafe(32))"
 ALGORITHM = "HS256"
-EXPIRE_MINUTES = 30 #minutos de expiracion del token
+EXPIRE_MINUTES = 30
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/login")
 
 def create_token(data: dict): 
     to_encode = data.copy()
     expire = datetime.now(UTC) + timedelta(minutes=30) 
-    to_encode.update({"exp": expire}) #al diccionario se le agrega el tiempo de expiracion, es decir los 30 min
+    to_encode.update({"exp": expire}) 
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-def get_db(): #crea la conexion
+def get_db(): 
     db = SessionLocal()
     try:
         yield db

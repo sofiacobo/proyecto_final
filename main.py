@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from database import Base, engine
+from middleware.logger import logger_middleware
 from routers import auth, books, lending
 
 # #Para borrar las tablas de la bd en caso de error en el modelo de datos
@@ -10,6 +11,7 @@ Base.metadata.create_all(bind=engine)
 
 # Creamos la app
 app = FastAPI(title="Gestión de biblioteca")
+app.middleware("http")(logger_middleware)
 
 #Incluimos los routers
 app.include_router(auth.router)
